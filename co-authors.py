@@ -120,6 +120,13 @@ def update_co_authors(co_authors: list[CoAuthor]):
 
 
 def config_git_to_use_commit_template():
+    if (
+        subprocess.run(
+            "git config commit.template", shell=True, text=True, capture_output=True
+        ).returncode
+        == 0
+    ):
+        return
     os.system(f"git config commit.template {local_co_authors_file}")
 
 

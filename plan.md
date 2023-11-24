@@ -3,25 +3,25 @@
 - [ ] 
 
 # in
-
-- ~~look in `.co-authors`~~
+- this cmd can be used as a test: `EDITOR="head -n 2" git commit --allow-empty`
 - look in `.co-authors.history`
+- spinner while AI is generating text
+- a router for human text - is it a strict enum? let's start with yes - a strict enum
+- ~~Q - how to `git --messgae-template`~~
+  - could be a hook - an interactive hook?
+    - this is stronger than a msg template, because you can't override it with `git commit -m "no template"`
+    - could become interactive after some while, like a debounce
+    - meaning - right after we approve, it'll stay quiet and do its job; but after a while it'll ask for approval again
+  - ~~could be a commit msg template - let's start with that~~
+    - ~~a message template can be passed on the cli~~
+    - ~~better to use `git config commit.template .co-authors`~~
+      - first see if a template exists...
+- ~~look in `.co-authors`~~
 - ~~look in `~/.co-authors`~~
 - ~~automatically add our files to `.gitignore`~~
 - ~~search current local repo history `git log --all ...`~~
   - ~~look for authors _and_ co-authors~~
 - ~~all these could be merged, `uniq` (DRY) and `take(50)` (don't explode the context)~~
-- spinner while AI is generating text
-- a router for human text - is it a strict enum? let's start with yes - a strict enum
-- Q - how to `git --messgae-template`
-  - could be a hook - an interactive hook?
-    - this is stronger than a msg template, because you can't override it with `git commit -m "no template"`
-    - could become interactive after some while, like a debounce
-    - meaning - right after we approve, it'll stay quiet and do its job; but after a while it'll ask for approval again
-  - could be a commit msg template - let's start with that
-    - a message template can be passed on the cli
-    - better to use `git config commit.template .co-authors`
-      - first see if a template exists...
 
 idea - a small cli, with natural language interface, to create a commit message template with co-authors
 
