@@ -4,13 +4,13 @@
 
 # in
 
-- look in `.co-authors`
+- ~~look in `.co-authors`~~
 - look in `.co-authors.history`
-- look in `~/.co-authors`
-- automatically add our files to `.gitignore`
-- search current local repo history `git log --all ...`
-  - look for authors _and_ co-authors
-- all these could be merged, `uniq` (DRY) and `take(50)` (don't explode the context)
+- ~~look in `~/.co-authors`~~
+- ~~automatically add our files to `.gitignore`~~
+- ~~search current local repo history `git log --all ...`~~
+  - ~~look for authors _and_ co-authors~~
+- ~~all these could be merged, `uniq` (DRY) and `take(50)` (don't explode the context)~~
 - spinner while AI is generating text
 - a router for human text - is it a strict enum? let's start with yes - a strict enum
 - Q - how to `git --messgae-template`
