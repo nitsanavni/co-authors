@@ -3,6 +3,9 @@
 - [ ] 
 
 # in
+
+- `CoAuthor`: add `github username`
+- test
 - this cmd can be used as a test: `EDITOR="head -n 2" git commit --allow-empty`
 - look in `.co-authors.history`
 - spinner while AI is generating text

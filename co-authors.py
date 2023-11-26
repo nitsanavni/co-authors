@@ -119,7 +119,7 @@ def update_co_authors(co_authors: list[CoAuthor]):
         f.write(new_co_authors)
 
 
-def config_git_to_use_commit_template():
+def configure_git_to_use_commit_template():
     if (
         subprocess.run(
             "git config commit.template", shell=True, text=True, capture_output=True
@@ -139,7 +139,7 @@ def git_ignore_co_authors_file():
 
 
 def set_up():
-    config_git_to_use_commit_template()
+    configure_git_to_use_commit_template()
     git_ignore_co_authors_file()
 
 
@@ -158,15 +158,49 @@ def update_global_co_authors(co_authors: list[CoAuthor]):
         f.write(format_co_authors(new_entries))
 
 
+class ResponseToUser(BaseModel):
+    internal_dialogue: str
+    message_to_user: str
+
+
+@marvin.ai_fn
+def validate_user_request(
+    user_input: str,
+    previous_co_authors: list[CoAuthor],
+    new_co_authors: list[CoAuthor],
+) -> ResponseToUser:
+    """
+    makes sure the user got what they asked for
+    returns an evaluation of the user's request and the new set of co-authors
+    tone: casual
+    """
+
+
+def remove_surrounding_quotes(s: str) -> str:
+    if s.startswith('"') and s.endswith('"'):
+        return s[1:-1]
+    return s
+
+
 def main():
     set_up()
+    current_co_authors = get_current_co_authors()
     co_authors = determine_new_co_authors(
         user_input=get_user_input(),
-        current_co_authors=get_current_co_authors(),
+        current_co_authors=current_co_authors,
         known_co_authors=get_known_co_authors(),
     )
     update_co_authors(co_authors=co_authors)
     update_global_co_authors(co_authors=co_authors)
+    print(
+        remove_surrounding_quotes(
+            validate_user_request(
+                user_input=get_user_input(),
+                previous_co_authors=current_co_authors,
+                new_co_authors=parse(read_co_authors_file(file=local_co_authors_file)),
+            ).message_to_user
+        )
+    )
 
 
 if __name__ == "__main__":
